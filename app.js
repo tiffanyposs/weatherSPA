@@ -37,17 +37,7 @@ weatherApp.controller('homeController', ['$scope', '$log', 'cityService', functi
       $scope.$watch('city', function(){
            cityService.city = $scope.city; 
       });
-//    $scope.person = {
-//        name: 'John',
-//        address: '555 Main Street',
-//        city: 'Sunnyville',
-//        state: 'CA',
-//        zipcode: '90210'
-//    }
-//    
-//    $scope.formattedAddress = function(person) {
-//        return person.address + ', ' + person.city + ', ' + person.state + ' ' + person.zipcode;
-//    }
+
 }]);
 
 
@@ -75,15 +65,21 @@ weatherApp.controller('forecastController', ['$scope', '$log', '$resource', '$ro
     $scope.convertToDate = function(dt) {
       return new Date(dt * 1000);
     }
-//    $scope.person = {
-//        name: 'John',
-//        address: '555 Main Street',
-//        city: 'Sunnyville',
-//        state: 'CA',
-//        zipcode: '90210'
-//    }
-//    
-//    $scope.formattedAddress = function(person) {
-//        return person.address + ', ' + person.city + ', ' + person.state + ' ' + person.zipcode;
-//    }
+
 }]);
+
+
+
+weatherApp.directive("weatherReport", function() {
+   return {
+       restrict: 'E',
+       templateUrl: 'directives/weatherReport.html',
+       replace: true,
+       scope: {
+           weatherDay: "=",
+           convertToStandard: "&",
+           convertToDate: "&",
+           dateFormat: "@"
+       }
+   }
+});
